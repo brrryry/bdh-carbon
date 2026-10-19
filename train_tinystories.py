@@ -198,9 +198,10 @@ def main():
             running_loss = 0.0
             start_time = time.time()
 
-    # Save final model
+    # Save final model (saving config as a standard dict for PyTorch 2.6+ weights_only compatibility)
+    import dataclasses
     ckpt_path = os.path.join(args.output_dir, "graph_bdh_babylm.pt")
-    torch.save({"model_state": model.state_dict(), "config": config}, ckpt_path)
+    torch.save({"model_state": model.state_dict(), "config": dataclasses.asdict(config)}, ckpt_path)
     print(f"\nModel checkpoint saved to {ckpt_path}")
 
     # Neuromorphic Hardware Inference Benchmarking
