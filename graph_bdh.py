@@ -459,7 +459,7 @@ class GraphBDHConfig:
     vocab_size: int = 256
     damping: float = 0.05             # Synaptic decay rate u
     threshold_mode: str = "continuous"  # 'continuous', 'spiking_binary', 'spiking_rate'
-    spiking_v_th: float = 0.1         # Membrane threshold
+    spiking_v_th: float = 0.25         # Membrane threshold
     spiking_leak: float = 0.9         # Membrane leak factor
     surrogate: str = "fast_sigmoid"   # 'fast_sigmoid' or 'atan'
     surrogate_scale: float = 4.0      # Surrogate gradient sharpness
@@ -698,7 +698,7 @@ class GraphBDH(nn.Module):
         self,
         idx: torch.Tensor,
         max_new_tokens: int,
-        temperature: float = 1.0,
+        temperature: float = 0.7,
         top_k: Optional[int] = None,
     ) -> torch.Tensor:
         """

@@ -37,6 +37,7 @@ def parse_args():
     parser.add_argument("--threshold_mode", type=str, default="spiking_binary", choices=["continuous", "spiking_binary", "spiking_rate"])
     parser.add_argument("--synaptic_topology", type=str, default="hub_sparse", choices=["hub_sparse", "power_law_sparse", "dense"])
     parser.add_argument("--damping", type=float, default=0.05, help="Synaptic decay rate u")
+    parser.add_argument("--spiking_v_th", type=float, default=0.25, help="Membrane firing threshold V_th")
 
     # Training
     parser.add_argument("--batch_size", type=int, default=16)
@@ -135,6 +136,7 @@ def main():
         vocab_size=vocab_size,
         damping=args.damping,
         threshold_mode=args.threshold_mode,
+        spiking_v_th=args.spiking_v_th,
         synaptic_topology=args.synaptic_topology,
     )
 
